@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MembersModule } from './members/members.module';
+import { Members } from './members/entities/member.entity copy';
+import { Payments } from './members/entities/payments.entity';
 
 @Module({
   imports: [
@@ -12,11 +15,10 @@ import { AppService } from './app.service';
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'database',
-      entities: [
-        /* List of entities here */
-      ],
+      entities: [Members, Payments],
       synchronize: true,
     }),
+    MembersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
