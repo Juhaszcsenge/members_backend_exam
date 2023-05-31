@@ -14,4 +14,8 @@ export class AppController {
   index() {
     return { message: 'Welcome to the homepage' };
   }
+  @Post('/payments/seed')
+  generateRandomData() {
+    return this.appService.randomdata();
+  }
 }
